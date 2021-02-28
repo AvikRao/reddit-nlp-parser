@@ -1,3 +1,5 @@
+from django.shortcuts import render
+from django.http import HttpResponse
 import praw
 import json
 
@@ -8,7 +10,7 @@ with open("auth.json", "r") as f :
 
 reddit = praw.Reddit(client_id=auth["client_id"], client_secret=auth["client_secret"], user_agent=auth["user_agent"])
 
-data = set()
+data = []
 
 for subreddit in SUBREDDITS :
 
@@ -16,14 +18,15 @@ for subreddit in SUBREDDITS :
 
     top_posts_week = praw_subreddit.top("week")
     for post in top_posts_week :
-        data.add(post)
-    
-    hot_posts = praw_subreddit.hot()
-    for post in hot_posts :
-        data.add(post)
+        data.append(post)
 
 print(len(data))
 
-'''
-elements in `data`: https://praw.readthedocs.io/en/latest/code_overview/models/submission.html
-'''
+# Create your views here.
+def index(request): 
+    context = {"main": "Hello world!", "test": 5}
+    return render(request, 'main/index.html', context)
+
+def details(request, path):
+    context = {"topic": path, "data": data[:4]}
+    return render(request, 'main/details.html', context)

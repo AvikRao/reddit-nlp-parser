@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+
+    <title>Reddit NLP Parser</title>
+    
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-bg">
+        <a class="navbar-brand" href="#">redditNLP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <div class="container animate__animated animate__fadeIn">
+        <div class="discover ">
+            <h1 class="display-2 text-center discover-text">discover</h1>
+        </div>
+
+        <h2 class="trending-text animate__animated animate__fadeIn">trending topics</h2>
+
+        <div class="card-deck">
+            
+            
+            <div class="card card-main hvr-float animate__animated animate__fadeIn">
+                <a href="/gme">
+                    <div class="card-body">
+                        <h5 class="card-title card-title-main">$gme</h5>
+                        <canvas id="myChart" height="200" class="cardChart"></canvas>
+                        <div class="card card-article hvr-grow">
+                            <div class="card-body">
+                                <h5 class="card-title card-title-article">GME Gamme Squeeze Part Two?</h5>
+                                <p class="card-text">On Reddit - Read discussion</p>
+                            </div>
+                        </div>
+                        
+                        <!-- <a href="#" class="btn btn-primary btn-readmore">Read More</a> -->
+                    </div>
+                </a>
+            </div>
+
+            <div class="card card-main hvr-float animate__animated animate__fadeIn">
+                <a href="/roblox">
+                    <div class="card-body">
+                        <h5 class="card-title card-title-main">roblox</h5>
+                        <div class="card card-article hvr-grow">
+                            <div class="card-body">
+                                <h5 class="card-title card-title-article">Roblox expects shares to begin trading on NYSE March 10</h5>
+                                <p class="card-text">Gaming company Roblox expects to be trading publicly on or about March 10, per Bloomberg...</p>
+                            </div>
+                        </div>
+                        <div class="card card-article hvr-grow">
+                            <div class="card-body">
+                                <h5 class="card-title card-title-article">Roblox Prepares For NYSE Direct Listing</h5>
+                                <p class="card-text">Roblox (RBLX) has registered its shareholder Class A shares for resale in a direct listing...</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card card-main hvr-float animate__animated animate__fadeIn">
+                <a href="/tesla">
+                    <div class="card-body">
+                        <h5 class="card-title card-title-main">tesla</h5>
+                        <canvas id="myChart2" height="200" class="cardChart"></canvas>
+                        <div class="card card-article hvr-grow">
+                            <div class="card-body">
+                                <h5 class="card-title card-title-article">Elon Musk confirms Tesla plant closure amid stock slide</h5>
+                                <p class="card-text">Tesla CEO Elon Musk confirmed...</p>
+                            </div>
+                        </div>
+                
+                        <!-- <a href="#" class="btn btn-primary btn-readmore">Read More</a> -->
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    
+    <script src="{% static 'main/main.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js'
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    
+
+</body>
+
+</html>
