@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
 
+    <script type="text/javascript">
+        var prices = {{ prices|safe }};
+    </script>
+
     <title>Reddit NLP Parser</title>
     
 </head>
@@ -39,15 +43,15 @@
             
             
             <div class="card card-main hvr-float animate__animated animate__fadeIn">
-                <a href="/gme">
+                <a href="/{{stock1_name}}">
                     <div class="card-body">
-                        <h5 class="card-title card-title-main">$gme</h5>
-                        <canvas id="myChart" height="200" class="cardChart"></canvas>
+                        <h5 class="card-title card-title-main">{{stock1_name|lower}}</h5>
+                        <canvas id="{{stock1_name}}Chart" height="200" class="cardChart"></canvas>
                         <div class="card card-article hvr-grow">
-                            <div class="card-body">
-                                <h5 class="card-title card-title-article">GME Gamme Squeeze Part Two?</h5>
-                                <p class="card-text">On Reddit - Read discussion</p>
-                            </div>
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{stock1_data.submissions.0.title|truncatechars:55}}</h5>
+                                    <p class="card-text">{{stock1_data.submissions.0.selftext|truncatechars:70}}</p>
+                                </div>
                         </div>
                         
                         <!-- <a href="#" class="btn btn-primary btn-readmore">Read More</a> -->
@@ -56,42 +60,118 @@
             </div>
 
             <div class="card card-main hvr-float animate__animated animate__fadeIn">
-                <a href="/roblox">
+                <a href="/{{info1_name}}">
                     <div class="card-body">
-                        <h5 class="card-title card-title-main">roblox</h5>
+                        <h5 class="card-title card-title-main">{{info1_name|lower}}</h5>
                         <div class="card card-article hvr-grow">
-                            <div class="card-body">
-                                <h5 class="card-title card-title-article">Roblox expects shares to begin trading on NYSE March 10</h5>
-                                <p class="card-text">Gaming company Roblox expects to be trading publicly on or about March 10, per Bloomberg...</p>
-                            </div>
+                            <a href="https://www.reddit.com{{info1_data.submissions.0.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info1_data.submissions.0.title|truncatechars:55}}</h5>
+                                    <p class="card-text">{{info1_data.submissions.0.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
                         </div>
                         <div class="card card-article hvr-grow">
-                            <div class="card-body">
-                                <h5 class="card-title card-title-article">Roblox Prepares For NYSE Direct Listing</h5>
-                                <p class="card-text">Roblox (RBLX) has registered its shareholder Class A shares for resale in a direct listing...</p>
-                            </div>
+                            <a href="https://www.reddit.com{{info1_data.submissions.1.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info1_data.submissions.1.title|truncatechars:55}}</h5>
+                                    <p class="card-text">{{info1_data.submissions.1.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </a>
             </div>
 
             <div class="card card-main hvr-float animate__animated animate__fadeIn">
-                <a href="/tesla">
+                <a href="/{{stock2_name}}">
                     <div class="card-body">
-                        <h5 class="card-title card-title-main">tesla</h5>
-                        <canvas id="myChart2" height="200" class="cardChart"></canvas>
+                        <h5 class="card-title card-title-main">{{stock2_name|lower}}</h5>
+                        <canvas id="{{stock2_name}}Chart" height="200" class="cardChart"></canvas>
                         <div class="card card-article hvr-grow">
                             <div class="card-body">
-                                <h5 class="card-title card-title-article">Elon Musk confirms Tesla plant closure amid stock slide</h5>
-                                <p class="card-text">Tesla CEO Elon Musk confirmed...</p>
+                                <h5 class="card-title card-title-article">{{stock2_data.submissions.0.title|truncatechars:55}}</h5>
+                                <p class="card-text">{{stock2_data.submissions.0.selftext|truncatechars:70}}</p>
                             </div>
                         </div>
-                
+            
                         <!-- <a href="#" class="btn btn-primary btn-readmore">Read More</a> -->
                     </div>
                 </a>
             </div>
             
+        </div>
+
+        <div class="card-deck">
+        
+        
+            <div class="card card-main hvr-float animate__animated animate__fadeIn">
+                <a href="/{{info2_name}}">
+                    <div class="card-body">
+                        <h5 class="card-title card-title-main">{{info2_name|lower}}</h5>
+                        <div class="card card-article hvr-grow">
+                            <a href="https://www.reddit.com{{info2_data.submissions.0.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info2_data.submissions.0.title|truncatechars:55}}
+                                    </h5>
+                                    <p class="card-text">{{info2_data.submissions.0.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article hvr-grow">
+                            <a href="https://www.reddit.com{{info2_data.submissions.1.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info2_data.submissions.1.title|truncatechars:55}}</h5>
+                                    <p class="card-text">{{info2_data.submissions.1.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="card card-main hvr-float animate__animated animate__fadeIn">
+                <a href="/{{stock3_name}}">
+                    <div class="card-body">
+                        <h5 class="card-title card-title-main">{{stock3_name|lower}}</h5>
+                        <canvas id="{{stock3_name}}Chart" height="200" class="cardChart"></canvas>
+                        <div class="card card-article hvr-grow">
+                            <div class="card-body">
+                                <h5 class="card-title card-title-article">{{stock3_data.submissions.0.title|truncatechars:55}}</h5>
+                                <p class="card-text">{{stock3_data.submissions.0.selftext|truncatechars:70}}</p>
+                            </div>
+                        </div>
+            
+                        <!-- <a href="#" class="btn btn-primary btn-readmore">Read More</a> -->
+                    </div>
+                </a>
+            </div>
+        
+            <div class="card card-main hvr-float animate__animated animate__fadeIn">
+                <a href="/{{info3_name}}">
+                    <div class="card-body">
+                        <h5 class="card-title card-title-main">{{info3_name|lower}}</h5>
+                        <div class="card card-article hvr-grow">
+                            <a href="https://www.reddit.com{{info3_data.submissions.0.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info3_data.submissions.0.title|truncatechars:55}}
+                                    </h5>
+                                    <p class="card-text">{{info3_data.submissions.0.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article hvr-grow">
+                            <a href="https://www.reddit.com{{info3_data.submissions.1.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info3_data.submissions.1.title|truncatechars:55}}</h5>
+                                    <p class="card-text">{{info3_data.submissions.1.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
         </div>
     </div>
 

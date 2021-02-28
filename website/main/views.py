@@ -2,36 +2,52 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 import praw
 import json
-
-SUBREDDITS = ("investing", "stocks")
-
-with open("auth.json", "r") as f :
-    auth = json.loads(f.read())
-
-reddit = praw.Reddit(client_id=auth["client_id"], client_secret=auth["client_secret"], user_agent=auth["user_agent"])
-
-data = []
-
-for subreddit in SUBREDDITS :
-
-    praw_subreddit = reddit.subreddit(subreddit)
-
-    top_posts_week = praw_subreddit.top("week")
-    for post in top_posts_week :
-        data.append(post)
-
-print(len(data))
+import urllib
 
 # Create your views here.
 def index(request): 
-    context = {"main": "Hello world!", "test": 5}
+
+    with open("stocks.json", "r") as f :
+        stocks = json.loads(f.read())
+
+    with open("infos.json", "r") as f :
+        infos = json.loads(f.read())
+
+    with open("prices.json", "r") as f :
+        prices = json.loads(f.read())
+
+    print(prices)
+    stock_keys = list(stocks.keys())
+    info_keys = list(infos.keys())
+
+    context = {"stock1_name": stock_keys[0], "stock2_name": stock_keys[1], "stock3_name": stock_keys[2], "stock1_data": stocks[stock_keys[0]], "stock2_data": stocks[stock_keys[1]], "stock3_data": stocks[stock_keys[2]],
+    "info1_name": info_keys[0], "info2_name": info_keys[1], "info3_name": info_keys[2], "info1_data": infos[info_keys[0]], "info2_data": infos[info_keys[1]], "info3_data": infos[info_keys[2]], "prices": prices}
+    
     return render(request, 'main/index.html', context)
 
 def details(request, path):
 
-    with open("output.json", "r") as f :
-        inp = json.loads(f.read())
-    if path.upper() not in inp :
+    # path = urllib.parse.unquote(path)
+    # print(path)
+
+    with open("stocks.json", "r") as f :
+        stocks = json.loads(f.read())
+
+    with open("infos.json", "r") as f :
+        infos = json.loads(f.read())
+
+    with open("prices.json", "r") as f :
+        prices = json.loads(f.read())
+
+    if path.upper() in stocks :
+        stock = stocks[path]
+        stock['submissions'] = stock['submissions'][:5]
+        info = False
+    elif path in infos :
+        info = infos[path]
+        info['submissions'] = info['submissions'][:5]
+        stock = False
+    else  :
         raise Http404("This page doesn't exist.")
-    context = {"topic": path, "data": data[:4]}
+    context = {"topic": path, "stock": stock, "info": info, "prices": prices}
     return render(request, 'main/details.html', context)

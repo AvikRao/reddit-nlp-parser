@@ -14,6 +14,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
 
+    <script type="text/javascript">
+        var prices = {{ prices|safe }};
+        var info = "{{info}}";
+    </script>
+
     <title>Reddit NLP Parser</title>
 
 </head>
@@ -30,36 +35,55 @@
 
     <div class="detail-container">
         <div class="row">
-            <h1 class="display-3 detail-topic">{{ topic }}</h1>
+            <h1 class="display-3 detail-topic">{{ topic|lower }}</h1>
         </div>
         <hr>
 
         <div class="row">
             
-            <div class="col-6">
-                <h2 class="detail-reddit-header">top discussions</h2>
+            {% if stock %}
+                <div class="col-6">
+                    <h2 class="detail-reddit-header">top discussions</h2>
 
-                {% for item in data %}
-                <div class="card detail-reddit-card hvr-shrink">
-                    <a href="https://www.reddit.com{{item.permalink}}">
-                        <div class="card-body detail-card-body">
-                            <h5 class="card-title detail-card-title">{{item.title}}</h5>
-                            <p class="card-text card-text-date">{{item.created_utc}}</p>
-                            <p class="card-text card-text-stats">{{item.num_comments}} comments | {{item.score}} votes</p>
-                        </div>
-                    </a>
+                    {% for item in stock.submissions %}
+                    <div class="card detail-reddit-card hvr-shrink">
+                        <a href="https://www.reddit.com{{item.permalink}}">
+                            <div class="card-body detail-card-body">
+                                <h5 class="card-title detail-card-title">{{item.title}}</h5>
+                                <p class="card-text card-text-date">{{item.created_utc}}</p>
+                                <p class="card-text card-text-stats">{{item.num_comments}} comments | {{item.score}} votes</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
+            {% else %}
+                <div class="col-12">
+                    <h2 class="detail-reddit-header">top discussions</h2>
+                
+                    {% for item in info.submissions %}
+                    <div class="card detail-reddit-card hvr-shrink">
+                        <a href="https://www.reddit.com{{item.permalink}}">
+                            <div class="card-body detail-card-body">
+                                <h5 class="card-title detail-card-title">{{item.title}}</h5>
+                                <p class="card-text card-text-date">{{item.created_utc}}</p>
+                                <p class="card-text card-text-stats">{{item.num_comments}} comments | {{item.score}} votes</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
+            {% if stock %}
             <div class="col-6">
                 <h2 class="detail-reddit-header">price history</h2>
                 <div class="detail-chart-container">
-                    <canvas id="detailsChart" height="550px" width="500px" class="cardChart"></canvas>
+                    <canvas id="detailsChart" height="700px" width="500px" class="cardChart"></canvas>
                 </div>
             </div>
+            {% endif %}
         </div>
-        
         
         
     </div>

@@ -67,6 +67,10 @@ body {
     margin-top: 10px !important;
 }
 
+.card-article .card-body {
+    color: #ffffff !important;
+}
+
 .card-title-article {
     color: #FECC98;
     font-size: 1.1em !important;
@@ -74,9 +78,7 @@ body {
 }
 
 .detail-container {
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 50px;
+    margin: 50px;
 }
 
 .detail-topic {
@@ -182,6 +184,10 @@ a {
 .hvr-float:hover, .hvr-float:focus, .hvr-float:active {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
+}
+
+.card-deck {
+    margin-bottom: 20px;
 }
 
 /*
