@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+    <link rel="shortcut icon" href="{% static 'main/favicon.ico' %}" type="image/x-icon" />
 
     <script type="text/javascript">
         var prices = {{ prices|safe }};
         var info = "{{info}}";
     </script>
 
-    <title>Reddit NLP Parser</title>
+    <title>reddit-nlp</title>
 
 </head>
 
