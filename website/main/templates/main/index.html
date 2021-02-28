@@ -55,8 +55,6 @@
                                     <p class="card-text">{{stock1_data.submissions.0.selftext|truncatechars:70}}</p>
                                 </div>
                         </div>
-                        
-                        <!-- <a href="#" class="btn btn-primary btn-readmore">Read More</a> -->
                     </div>
                 </a>
             </div>
@@ -66,18 +64,18 @@
                     <div class="card-body">
                         <h5 class="card-title card-title-main">{{info1_name|lower}}</h5>
                         <div class="card card-article hvr-grow">
-                            <a href="https://www.reddit.com{{info1_data.submissions.0.permalink}}">
-                                <div class="card-body">
-                                    <h5 class="card-title card-title-article">{{info1_data.submissions.0.title|truncatechars:55}}</h5>
-                                    <p class="card-text">{{info1_data.submissions.0.selftext|truncatechars:100}}</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="card card-article hvr-grow">
                             <a href="https://www.reddit.com{{info1_data.submissions.1.permalink}}">
                                 <div class="card-body">
                                     <h5 class="card-title card-title-article">{{info1_data.submissions.1.title|truncatechars:55}}</h5>
                                     <p class="card-text">{{info1_data.submissions.1.selftext|truncatechars:100}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article hvr-grow">
+                            <a href="https://www.reddit.com{{info1_data.submissions.2.permalink}}">
+                                <div class="card-body">
+                                    <h5 class="card-title card-title-article">{{info1_data.submissions.2.title|truncatechars:55}}</h5>
+                                    <p class="card-text">{{info1_data.submissions.2.selftext|truncatechars:100}}</p>
                                 </div>
                             </a>
                         </div>
