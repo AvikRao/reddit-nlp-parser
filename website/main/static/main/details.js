@@ -10,64 +10,66 @@ utc_times.forEach((element) => {
 let dates = [];
 let ticker_prices = [];
 console.log("hi")
-Object.keys(prices[ticker]).forEach((date) => {
-    dates.unshift(date);
-    ticker_prices.unshift(parseFloat(prices[ticker][date]));
-});
 
-dates.reverse();
-ticker_prices.reverse();
+if (ticker in prices) {
+    Object.keys(prices[ticker]).forEach((date) => {
+        dates.unshift(date);
+        ticker_prices.unshift(parseFloat(prices[ticker][date]));
+    });
 
-console.log(dates);
-console.log(ticker_prices);
+    dates.reverse();
+    ticker_prices.reverse();
 
-var ctx = document.getElementById('detailsChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+    console.log(dates);
+    console.log(ticker_prices);
 
-    // The data for our dataset
-    data: {
-        labels: dates,
-        datasets: [{
-            label: 'Price',
-            data: ticker_prices,
-            fill: false,
-            borderColor: "#FC9F41",
-            pointBorderColor: "transparent",
-            pointBackgroundColor: "transparent",
-            pointRadius: 10,
-            lineTension: 0,
-        }]
-    },
+    var ctx = document.getElementById('detailsChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
 
-    // Configuration options go here
-    options: {
-        maintainAspectRatio: false,
-            legend: {
-                display: false,
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        color: "#12254a",
-                    },
-                    ticks: {
-                        beginAtZero: false,
-                        fontColor: "#91ade4",
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        color: "#12254a",
-                    },
-                    ticks: {
-                        display: true,
-                        fontColor: "#91ade4",
-                        maxTicksLimit: 10,
-                    }
-                }],
-            },
-    }
-});
+        // The data for our dataset
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Price',
+                data: ticker_prices,
+                fill: false,
+                borderColor: "#FC9F41",
+                pointBorderColor: "transparent",
+                pointBackgroundColor: "transparent",
+                pointRadius: 10,
+                lineTension: 0,
+            }]
+        },
 
+        // Configuration options go here
+        options: {
+            maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: "#12254a",
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            fontColor: "#91ade4",
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            color: "#12254a",
+                        },
+                        ticks: {
+                            display: true,
+                            fontColor: "#91ade4",
+                            maxTicksLimit: 10,
+                        }
+                    }],
+                },
+        }
+    });
+}
