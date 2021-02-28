@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 import praw
 import json
 
@@ -28,5 +28,10 @@ def index(request):
     return render(request, 'main/index.html', context)
 
 def details(request, path):
+
+    with open("output.json", "r") as f :
+        inp = json.loads(f.read())
+    if path.upper() not in inp :
+        raise Http404("This page doesn't exist.")
     context = {"topic": path, "data": data[:4]}
     return render(request, 'main/details.html', context)
