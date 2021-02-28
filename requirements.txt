@@ -2,3 +2,10 @@ Django
 praw
 pandas
 yfinance
+numpy
+torch
+sentence_transformers
+umap-learn
+hdbscan
+sklearn
+transformers
